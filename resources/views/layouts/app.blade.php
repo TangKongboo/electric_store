@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electric Store Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 min-h-screen">
@@ -17,22 +18,23 @@
 
             <!-- Desktop Nav Links -->
             <div class="hidden md:flex items-center gap-2">
-                <a href="{{ route('dashboard') }}" class="text-blue-600 font-medium px-3 py-2 rounded hover:bg-blue-50 transition">Dashboard</a>
+                <a href="{{ route('dashboard') }}" class=" text-blue-600 font-medium px-3 py-2 rounded hover:bg-blue-50 transition">Dashboard</a>
                 @auth
                     @if(auth()->user()->isAdmin())
                         <a href="{{ route('categories.index') }}" class="text-gray-700 font-medium px-3 py-2 rounded border border-gray-300 hover:bg-gray-50 transition">Categories</a>
                         <a href="{{ route('brands.index') }}" class="text-gray-700 font-medium px-3 py-2 rounded border border-gray-300 hover:bg-gray-50 transition">Brands</a>
                         <a href="{{ route('products.index') }}" class="text-gray-700 font-medium px-3 py-2 rounded border border-gray-300 hover:bg-gray-50 transition">Products</a>
                         <a href="{{ route('suppliers.index') }}" class="text-gray-700 font-medium px-3 py-2 rounded border border-gray-300 hover:bg-gray-50 transition">Suppliers</a>
-                        <a href="{{ route('customers.index') }}" class="text-gray-700 font-medium px-3 py-2 rounded border border-gray-300 hover:bg-gray-50 transition">Customers</a>
+                        <a href="{{ route('purchases.index') }}" class="text-gray-700 font-medium px-3 py-2 rounded border border-gray-300 hover:bg-gray-50 transition">Purchases</a>
+                        <a href="{{ route('sales.index') }}" class="text-gray-700 font-medium px-3 py-2 rounded border border-gray-300 hover:bg-gray-50 transition">Sales</a>
                         <a href="{{ route('reports.sales') }}" class="text-gray-700 font-medium px-3 py-2 rounded border border-gray-300 hover:bg-gray-50 transition">Reports</a>
                     @endif
 
-                    @if(auth()->user()->isCashier())
+                    @if(!auth()->user()->isAdmin() && auth()->user()->isCashier())
                         <a href="{{ route('sales.index') }}" class="text-gray-700 font-medium px-3 py-2 rounded border border-gray-300 hover:bg-gray-50 transition">Sales</a>
                     @endif
 
-                    @if(auth()->user()->isStorekeeper())
+                    @if(!auth()->user()->isAdmin() && auth()->user()->isStorekeeper())
                         <a href="{{ route('products.index') }}" class="text-gray-700 font-medium px-3 py-2 rounded border border-gray-300 hover:bg-gray-50 transition">Products</a>
                         <a href="{{ route('purchases.index') }}" class="text-gray-700 font-medium px-3 py-2 rounded border border-gray-300 hover:bg-gray-50 transition">Purchases</a>
                     @endif
@@ -58,15 +60,16 @@
                 <a href="{{ route('brands.index') }}" class="block text-gray-700 font-medium px-3 py-2 rounded hover:bg-gray-50 transition">Brands</a>
                 <a href="{{ route('products.index') }}" class="block text-gray-700 font-medium px-3 py-2 rounded hover:bg-gray-50 transition">Products</a>
                 <a href="{{ route('suppliers.index') }}" class="block text-gray-700 font-medium px-3 py-2 rounded hover:bg-gray-50 transition">Suppliers</a>
-                <a href="{{ route('customers.index') }}" class="block text-gray-700 font-medium px-3 py-2 rounded hover:bg-gray-50 transition">Customers</a>
+                <a href="{{ route('purchases.index') }}" class="block text-gray-700 font-medium px-3 py-2 rounded hover:bg-gray-50 transition">Purchases</a>
+                <a href="{{ route('sales.index') }}" class="block text-gray-700 font-medium px-3 py-2 rounded hover:bg-gray-50 transition">Sales</a>
                 <a href="{{ route('reports.sales') }}" class="block text-gray-700 font-medium px-3 py-2 rounded hover:bg-gray-50 transition">Reports</a>
             @endif
 
-            @if(auth()->user()->isCashier())
+            @if(!auth()->user()->isAdmin() && auth()->user()->isCashier())
                 <a href="{{ route('sales.index') }}" class="block text-gray-700 font-medium px-3 py-2 rounded hover:bg-gray-50 transition">Sales</a>
             @endif
 
-            @if(auth()->user()->isStorekeeper())
+            @if(!auth()->user()->isAdmin() && auth()->user()->isStorekeeper())
                 <a href="{{ route('products.index') }}" class="block text-gray-700 font-medium px-3 py-2 rounded hover:bg-gray-50 transition">Products</a>
                 <a href="{{ route('purchases.index') }}" class="block text-gray-700 font-medium px-3 py-2 rounded hover:bg-gray-50 transition">Purchases</a>
             @endif
@@ -93,6 +96,6 @@
 <main class="max-w-7xl mx-auto p-6">
     @yield('content')
 </main>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

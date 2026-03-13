@@ -14,6 +14,11 @@ class RoleMiddleware
         return redirect()->route('login');
     }
 
+    // Admin has access to everything
+    if (Auth::user()->role === 'admin') {
+        return $next($request);
+    }
+
     // Split roles if passed as comma-separated string
     $allowedRoles = [];
 

@@ -22,7 +22,6 @@
             <tr>
                 <th class="border px-4 py-2">#</th>
                 <th class="border px-4 py-2">Invoice</th>
-                <th class="border px-4 py-2">Customer</th>
                 <th class="border px-4 py-2">Date</th>
                 <th class="border px-4 py-2">Subtotal</th>
                 <th class="border px-4 py-2">Total</th>
@@ -35,7 +34,6 @@
                 <tr>
                     <td class="border px-4 py-2">{{ $loop->iteration }}</td>
                     <td class="border px-4 py-2">{{ $sale->invoice_no }}</td>
-                    <td class="border px-4 py-2">{{ $sale->customer->name ?? 'Walk-in Customer' }}</td>
                     <td class="border px-4 py-2">{{ $sale->sale_date }}</td>
                     <td class="border px-4 py-2">{{ $sale->subtotal }}</td>
                     <td class="border px-4 py-2">{{ $sale->total }}</td>
@@ -47,7 +45,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7" class="border px-4 py-4 text-center">No sales found.</td>
+                    <td colspan="6" class="border px-4 py-4 text-center">No sales found.</td>
                 </tr>
             @endforelse
         </tbody>

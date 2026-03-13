@@ -19,17 +19,7 @@
     <form action="{{ route('sales.store') }}" method="POST">
         @csrf
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <div>
-                <label class="block mb-1 font-medium">Customer</label>
-                <select name="customer_id" class="w-full border rounded px-3 py-2">
-                    <option value="">Walk-in Customer</option>
-                    @foreach($customers as $customer)
-                        <option value="{{ $customer->id }}">{{ $customer->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
                 <label class="block mb-1 font-medium">Sale Date</label>
                 <input type="date" name="sale_date" class="w-full border rounded px-3 py-2">

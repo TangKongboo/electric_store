@@ -46,17 +46,17 @@ class User extends Authenticatable
         ];
     }
     public function isAdmin()
-{
-    return $this->role === 'admin';
-}
+    {
+        return $this->role === 'admin';
+    }
 
-public function isCashier()
-{
-    return $this->role === 'cashier';
-}
+    public function isCashier()
+    {
+        return $this->role === 'cashier' || $this->role === 'admin';
+    }
 
-public function isStorekeeper()
-{
-    return $this->role === 'storekeeper';
-}
+    public function isStorekeeper()
+    {
+        return $this->role === 'storekeeper' || $this->role === 'admin';
+    }
 }

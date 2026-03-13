@@ -21,18 +21,6 @@
             </div>
         </div>
 
-        <!-- Customer Information -->
-        <div class="mb-6 bg-white p-4 rounded-lg shadow-sm">
-            <h2 class="text-lg font-semibold mb-2">Customer Information</h2>
-            @if($sale->customer)
-                <p><strong>Name:</strong> {{ $sale->customer->name }}</p>
-                <p><strong>Email:</strong> {{ $sale->customer->email }}</p>
-                <p><strong>Phone:</strong> {{ $sale->customer->phone }}</p>
-                <p><strong>Address:</strong> {{ $sale->customer->address }}</p>
-            @else
-                <p>Walk-in Customer</p>
-            @endif
-        </div>
 
         <!-- Items Table -->
         <table class="w-full border border-gray-300 mb-6 bg-white rounded-lg overflow-hidden">

@@ -10,7 +10,6 @@ class Sale extends Model
     use HasFactory;
 
     protected $fillable = [
-        'customer_id',
         'sale_date',
         'invoice_no',
         'subtotal',
@@ -21,10 +20,6 @@ class Sale extends Model
         'created_by',
     ];
 
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class);
-    }
 
    public function items()
     {

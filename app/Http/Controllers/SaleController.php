@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\SaleItem;
@@ -13,30 +12,28 @@ class SaleController extends Controller
 {
     public function index()
     {
-        $sales = Sale::with('customer')->latest()->paginate(10);
+        $sales = Sale::latest()->paginate(10);
         return view('sales.index', compact('sales'));
     }
 
     public function create()
     {
-        $customers = Customer::where('status', 1)->get();
         $products = Product::where('status', 1)->get();
 
         $latestSale = Sale::latest('id')->first();
         $nextInvoiceNo = 'INV-' . str_pad($latestSale ? $latestSale->id + 1 : 1, 6, '0', STR_PAD_LEFT);
 
-        return view('sales.create', compact('customers', 'products', 'nextInvoiceNo'));
+        return view('sales.create', compact('products', 'nextInvoiceNo'));
     }
     public function show(Sale $sale)
     {
-        $sale->load(['customer', 'items.product', 'user']);
+        $sale->load(['items.product', 'user']);
         return view('sales.show', compact('sale'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'customer_id' => 'nullable|exists:customers,id',
             'sale_date' => 'required|date',
             'invoice_no' => 'required|unique:sales,invoice_no',
             'product_id' => 'required|array|min:1',
@@ -54,7 +51,6 @@ class SaleController extends Controller
             $subtotal = 0;
 
             $sale = Sale::create([
-                'customer_id' => $request->customer_id,
                 'sale_date' => $request->sale_date,
                 'invoice_no' => $request->invoice_no,
                 'subtotal' => 0,
