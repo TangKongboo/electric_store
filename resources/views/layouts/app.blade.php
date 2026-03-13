@@ -53,7 +53,7 @@
 
     <!-- Mobile Nav Menu -->
     <div :class="{'block': open, 'hidden': !open}" class="hidden md:hidden border-t border-gray-200 px-4 pb-4 pt-2 space-y-1">
-        <a href="{{ route('dashboard') }}" class="block text-blue-600 font-medium px-3 py-2 rounded hover:bg-blue-50 transition">Dashboard</a>
+        <a href="{{ route('dashboard') }}" class=" block text-blue-600 font-medium px-3 py-2 rounded hover:bg-blue-50 transition">Dashboard</a>
         @auth
             @if(auth()->user()->isAdmin())
                 <a href="{{ route('categories.index') }}" class="block text-gray-700 font-medium px-3 py-2 rounded hover:bg-gray-50 transition">Categories</a>
@@ -79,21 +79,23 @@
 
 <!-- Header -->
 <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
-    <h2 class="text-xl font-semibold">@yield('title')</h2>
+    <div class="max-w-7xl mx-auto w-full flex justify-between items-center px-4 sm:px-6 lg:px-8">
+        <h2 class="text-xl font-semibold">@yield('title')</h2>
 
-    <div class="flex items-center gap-4">
-        <span class="text-gray-700 font-medium">{{ auth()->user()->name }}</span>
+        <div class="flex items-center gap-4">
+            <span class="text-gray-700 font-medium">{{ auth()->user()->name }}</span>
 
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
-                Logout
-            </button>
-        </form>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
+                    Logout
+                </button>
+            </form>
+        </div>
     </div>
 </header>
 
-<main class="max-w-7xl mx-auto p-6">
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
     @yield('content')
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

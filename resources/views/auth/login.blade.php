@@ -33,7 +33,7 @@
 
             <!-- Password -->
             <div class="mb-4">
-                <x-input-label class="black" for="password" :value="__('Password')" />
+                <x-input-label for="password" :value="__('Password')" />
                 <x-text-input
                     id="password"
                     class="mt-1 block w-full"
